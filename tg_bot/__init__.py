@@ -115,7 +115,7 @@ class Bot(Updater, Utils):
         user.send_message(
             "Iltimos endi viloyatingizni tanlang!",
             reply_markup=ReplyKeyboardMarkup(
-                Region.keyboard
+                Region.keyboard()
             )
         )
         return REGION
