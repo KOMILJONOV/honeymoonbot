@@ -7,7 +7,7 @@ from django.db.models.fields.files import FileDescriptor
 
 
 class Utils:
-    def getUser(self, update:Update) -> tuple[TelegramUser, "User"]:
+    def getUser(self, update:Update) ->"tuple[TelegramUser, User]":
         user = update.message.from_user if update.message else update.callback_query.from_user
         tgUser = User.objects.filter(id=user.id).first()
         return user, tgUser
@@ -34,7 +34,7 @@ class Region(models.Model, Utils):
     @classmethod
     @property
     def keyboard(self):
-        regions: list[Region] = Region.objects.all()
+        regions:"list[Region]" = Region.objects.all()
         return self.distribute([
             region.name for region in regions
         ], 2)

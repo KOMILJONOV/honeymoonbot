@@ -9,7 +9,7 @@ from telegram import (
 from bot.models import User
 
 class Utils:
-    def getUser(self, update:Update) -> tuple[tgUser, User]:
+    def getUser(self, update:Update) -> "tuple[tgUser, User]":
         user = update.message.from_user if update.message else update.callback_query.from_user
         tgUser = User.objects.filter(id=user.id).first()
         return user, tgUser
@@ -34,7 +34,7 @@ class Utils:
 
 class ReplyKeyboardMarkup(tgReplyKeyboardMarkup):
     def __init__(self,
-        keyboard: list[list[str, KeyboardButton]],
+        keyboard: "list[list[str, KeyboardButton]]",
         one_time_keyboard: bool = False,
         selective: bool = False,
         input_field_placeholder: str = None,
