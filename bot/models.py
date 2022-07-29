@@ -31,8 +31,8 @@ class Region(models.Model, Utils):
     def __str__(self):
         return self.name
 
-    @classmethod
     @property
+    @classmethod
     def keyboard(self):
         regions:"list[Region]" = Region.objects.all()
         return self.distribute([
