@@ -44,7 +44,9 @@ class User(models.Model):
     name:str = models.CharField(max_length=255)
     number: str = models.CharField(max_length=255)
     region:Region = models.ForeignKey('Region', on_delete=models.CASCADE)
-
+    
+    def __str__(self) -> str:
+        return f"{self.name} | {self.number}"
 
 
 
@@ -56,7 +58,7 @@ def file_size(value): # add this to some file where you can import it from
 
 
 class Post(models.Model):
-    media:FileDescriptor = models.FileField(upload_to="media/", validators=[file_size])
+    media:FileDescriptor = models.FileField(upload_to="media/", null=True, blank=True, validators=[file_size])
     media_type: int = models.IntegerField(
         choices=[
             (0, "text"),

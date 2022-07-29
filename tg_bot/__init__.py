@@ -146,7 +146,7 @@ class Bot(Updater, Utils):
             res = requests.post(url, data=data)
             print(res.json())
                                                                                                  
-            user.send_message("Tabriklaymiz siz botimizdan muvafaqqiyatli ro'yxatdan o'tdingiz.")
+            user.send_message("Tabriklaymiz siz botimizdan muvafaqqiyatli ro'yxatdan o'tdingiz.",reply_markup=ReplyKeyboardRemove())
             post: Post = Post.objects.first()
             
             if post:
