@@ -1,0 +1,135 @@
+{
+    "columns": [],
+    "items": [
+        {
+            "id": "5586",
+            "countable": true,
+            "droppable": true,
+            "draggable": true,
+            "columnId": "NEW",
+            "data": {
+                "id": "5586",
+                "name": "907887235 - Входящий звонок",
+                "link": "/crm/deal/details/5586/",
+                "columnId": "NEW",
+                "columnColor": "",
+                "price": 0,
+                "price_formatted": "0 UZS",
+                "date": "1 минуту назад",
+                "contactId": 4884,
+                "companyId": "",
+                "contactType": "CRM_CONTACT",
+                "modifyById": "1",
+                "modifyByAvatar": "",
+                "activityShow": 1,
+                "activityErrorTotal": 0,
+                "activityProgress": 0,
+                "activityTotal": 0,
+                "page": 1,
+                "fields": [
+                    {
+                        "code": "ID",
+                        "title": "ID",
+                        "type": "string",
+                        "value": "5586",
+                        "valueDelimiter": ", ",
+                        "icon": "",
+                        "html": false
+                    },
+                    {
+                        "code": "TITLE",
+                        "title": "Название",
+                        "type": "string",
+                        "value": "907887235 - Входящий звонок",
+                        "valueDelimiter": ", ",
+                        "icon": "",
+                        "html": false
+                    },
+                    {
+                        "code": "ASSIGNED_BY_ID",
+                        "title": "Ответственный",
+                        "type": "user",
+                        "value": {
+                            "link": "/company/personal/user/24/",
+                            "title": "Ozoda",
+                            "picture": ""
+                        },
+                        "valueDelimiter": "<br>",
+                        "icon": "",
+                        "html": true
+                    },
+                    {
+                        "code": "OPPORTUNITY",
+                        "title": "Сумма и валюта",
+                        "type": "string",
+                        "value": "0 UZS",
+                        "valueDelimiter": ", ",
+                        "icon": "",
+                        "html": false
+                    },
+                    {
+                        "code": "SOURCE_ID",
+                        "title": "Источник",
+                        "type": "crm_status",
+                        "value": "Звонок",
+                        "valueDelimiter": ", ",
+                        "icon": "",
+                        "html": true
+                    },
+                    {
+                        "code": "DATE_CREATE",
+                        "title": "Дата создания",
+                        "type": "string",
+                        "value": "29.07.2022 18:11:02",
+                        "valueDelimiter": ", ",
+                        "icon": "",
+                        "html": false
+                    },
+                    {
+                        "code": "CONTACT_NAME",
+                        "title": "Имя",
+                        "type": "string",
+                        "value": "Без имени",
+                        "valueDelimiter": ", ",
+                        "icon": {
+                            "url": "/bitrix/images/crm/grid_icons/contact.svg",
+                            "title": "Контакт"
+                        },
+                        "html": false
+                    }
+                ],
+                "return": false,
+                "returnApproach": true,
+                "assignedBy": "24",
+                "required": {
+                    "UC_GN6MHK": [
+                        "UF_CRM_1658674580123"
+                    ],
+                    "WON": [
+                        "UF_CRM_1657972408732"
+                    ]
+                },
+                "required_fm": {
+                    "PHONE": false,
+                    "EMAIL": true,
+                    "IM": true,
+                    "WEB": true
+                },
+                "contactName": "Без имени",
+                "contactTooltip": "<a href=\"/crm/contact/details/4884/\" bx-tooltip-user-id=\"CONTACT_4884\" bx-tooltip-loader=\"/bitrix/components/bitrix/crm.contact.show/card.ajax.php\" bx-tooltip-classname=\"crm_balloon_contact\">Без имени<\/a>",
+                "phone": {
+                    "contact": [
+                        {
+                            "value": "907887235",
+                            "title": "Рабочий"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "last_id": 5586,
+    "scheme_inline": "",
+    "customFields": [],
+    "dropzones": []
+}

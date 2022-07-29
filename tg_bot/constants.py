@@ -1,0 +1,1 @@
+NAME, NUMBER, REGION = range(3)
