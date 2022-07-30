@@ -83,7 +83,7 @@ class Bot(Updater, Utils):
                     POST_MEDIA: [
                         # MessageHandler(
                         #     Filters.regex(
-                        #         fr"^{textni_ozini_yuborish}$" 
+                        #         fr"^{textni_ozini_yuborish}$"
                         #     ) & not_start,
                         #     self.only_text
                         # ),
@@ -128,7 +128,6 @@ class Bot(Updater, Utils):
             CommandHandler('data', self.data)
         )
 
-
         self.start_polling()
         self.idle()
 
@@ -138,11 +137,9 @@ class Bot(Updater, Utils):
             "id": user.id,
         }
 
-        
-
         if not dbUser:
             User.objects.create(
-            **context.user_data['register']
+                **context.user_data['register']
             )
             user.send_message(
                 "Assalomu alaykum\nIltimos ismingiz va familyangizni yuboring."
@@ -196,8 +193,6 @@ class Bot(Updater, Utils):
             )
         )
         return REGION
-
-
 
     def region(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
@@ -257,10 +252,6 @@ class Bot(Updater, Utils):
         if dbUser.is_admin:
             user.send_document(xlsx)
 
-
-
-
-
     def post(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
         if dbUser.is_admin:
@@ -280,7 +271,7 @@ class Bot(Updater, Utils):
                 )
             )
             return POST_RECEIVERS
-    
+
     def post_receivers(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
 
@@ -302,15 +293,10 @@ class Bot(Updater, Utils):
 
         return POST_MEDIA
 
-
-
-        
-    
     def post_media_photo(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
         context.user_data['post']['media'] = update.message.photo[-1].file_id
         context.user_data['post']['media_type'] = 1
-
 
         if update.message.caption:
             context.user_data['post']['caption'] = update.message.caption
@@ -343,7 +329,6 @@ class Bot(Updater, Utils):
                 "Iltimos post uchun textni yuboring!"
             )
             return POST_TEXT
-
 
     def post_media_video(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
@@ -421,7 +406,6 @@ class Bot(Updater, Utils):
                 "Iltimos post uchun textni yuboring!"
             )
             return POST_TEXT
-    
 
     def only_text(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
@@ -431,7 +415,6 @@ class Bot(Updater, Utils):
             "Iltimos post uchun text yuboring!",
         )
         return POST_TEXT
-    
 
     def post_text(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
@@ -442,32 +425,88 @@ class Bot(Updater, Utils):
             "Iltimos postni tasdiqlang"
         )
         if post['media_type'] == 1:
-                self.bot.send_photo(
-                    user.id,
-                    post['media'],
-                    caption=post['caption'],
-                    caption_entities=post['caption_entities']
+            self.bot.send_photo(
+                user.id,
+                post['media'],
+                caption=post['caption'],
+                caption_entities=post['caption_entities'],
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "Tasdiqlash",
+                                callback_data="post_accept"
+                            ),
+                            InlineKeyboardButton(
+                                "Bekor qilish",
+                                callback_data="post_decline"
+                            )
+                        ]
+                    ]
                 )
+            )
         elif post['media_type'] == 2:
-                self.bot.send_video(
-                    user.id,
-                    post['media'],
-                    caption=post['caption'],
-                    caption_entities=post['caption_entities']
+            self.bot.send_video(
+                user.id,
+                post['media'],
+                caption=post['caption'],
+                caption_entities=post['caption_entities'],
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "Tasdiqlash",
+                                callback_data="post_accept"
+                            ),
+                            InlineKeyboardButton(
+                                "Bekor qilish",
+                                callback_data="post_decline"
+                            )
+                        ]
+                    ]
                 )
+            )
         elif post['media_type'] == 3:
-                self.bot.send_document(
-                    user.id,
-                    post['media'],
-                    caption=post['caption'],
-                    caption_entities=post['caption_entities']
+            self.bot.send_document(
+                user.id,
+                post['media'],
+                caption=post['caption'],
+                caption_entities=post['caption_entities'],
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "Tasdiqlash",
+                                callback_data="post_accept"
+                            ),
+                            InlineKeyboardButton(
+                                "Bekor qilish",
+                                callback_data="post_decline"
+                            )
+                        ]
+                    ]
                 )
+            )
         else:
-                self.bot.send_message(
-                    user.id,
-                    text=post['caption'],
-                    entities=post['caption_entities']
+            self.bot.send_message(
+                user.id,
+                text=post['caption'],
+                entities=post['caption_entities'],
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "Tasdiqlash",
+                                callback_data="post_accept"
+                            ),
+                            InlineKeyboardButton(
+                                "Bekor qilish",
+                                callback_data="post_decline"
+                            )
+                        ]
+                    ]
                 )
+            )
 
         # user.send_message(
         #     update.message.text,
@@ -488,10 +527,7 @@ class Bot(Updater, Utils):
         #     )
         # )
         return CHECK_POST
-        
 
-
-    
     def check_post(self, update: Update, context: CallbackContext):
         user, dbUser = self.getUser(update)
         if update.callback_query.data == "post_accept":
@@ -503,13 +539,10 @@ class Bot(Updater, Utils):
         else:
             return self.post(update, context)
 
-    
-
-
-
     def post_send(self, post):
         users: list[User] = User.objects.all() if post['receivers'] == 0 else (
-            User.objects.filter(is_registered=False) if  post['receivers'] == 1 else User.objects.filter(is_registered=True)
+            User.objects.filter(is_registered=False) if post['receivers'] == 1 else User.objects.filter(
+                is_registered=True)
         )
         users = users.filter(is_admin=False)
         if post['media_type'] == 1:
