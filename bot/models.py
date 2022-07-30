@@ -41,9 +41,14 @@ class Region(models.Model, Utils):
 
 class User(models.Model):
     id:int = models.BigIntegerField(primary_key=True)
-    name:str = models.CharField(max_length=255)
-    number: str = models.CharField(max_length=255)
-    region:Region = models.ForeignKey('Region', on_delete=models.CASCADE)
+    name:str = models.CharField(max_length=255, null=True, blank=True)
+    number: str = models.CharField(max_length=255, null=True, blank=True)
+    region:Region = models.ForeignKey('Region', on_delete=models.CASCADE, null=True, blank=True)
+
+    is_registered: bool = models.BooleanField(default=False)
+
+
+    is_admin: bool = models.BooleanField(default=False)
     
     def __str__(self) -> str:
         return f"{self.name} | {self.number}"
