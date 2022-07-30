@@ -437,27 +437,56 @@ class Bot(Updater, Utils):
         user, dbUser = self.getUser(update)
         context.user_data['post']['caption'] = update.message.text
         context.user_data['post']['caption_entities'] = update.message.entities
+        post = context.user_data['post']
         user.send_message(
             "Iltimos postni tasdiqlang"
         )
-        user.send_message(
-            update.message.text,
-            entities=update.message.entities,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            "Tasdiqlash",
-                            callback_data="post_accept"
-                        ),
-                        InlineKeyboardButton(
-                            "Bekor qilish",
-                            callback_data="post_decline"
-                        )
-                    ]
-                ]
-            )
-        )
+        if post['media_type'] == 1:
+                self.bot.send_photo(
+                    user.id,
+                    post['media'],
+                    caption=post['caption'],
+                    caption_entities=post['caption_entities']
+                )
+        elif post['media_type'] == 2:
+                self.bot.send_video(
+                    user.id,
+                    post['media'],
+                    caption=post['caption'],
+                    caption_entities=post['caption_entities']
+                )
+        elif post['media_type'] == 3:
+                self.bot.send_document(
+                    user.id,
+                    post['media'],
+                    caption=post['caption'],
+                    caption_entities=post['caption_entities']
+                )
+        else:
+                self.bot.send_message(
+                    user.id,
+                    text=post['caption'],
+                    entities=post['caption_entities']
+                )
+
+        # user.send_message(
+        #     update.message.text,
+        #     entities=update.message.entities,
+        #     reply_markup=InlineKeyboardMarkup(
+        #         [
+        #             [
+        #                 InlineKeyboardButton(
+        #                     "Tasdiqlash",
+        #                     callback_data="post_accept"
+        #                 ),
+        #                 InlineKeyboardButton(
+        #                     "Bekor qilish",
+        #                     callback_data="post_decline"
+        #                 )
+        #             ]
+        #         ]
+        #     )
+        # )
         return CHECK_POST
         
 
