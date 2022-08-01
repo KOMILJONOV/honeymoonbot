@@ -205,7 +205,7 @@ class Bot(Updater, Utils):
             dbUser.save()
 
             data = {
-                "fields[TITLE]": f"{dbUser.name} - {dbUser.number} - {dbUser.region.name}",
+                "fields[TITLE]": f"Telegram-bot {dbUser.name} - {dbUser.number} - {dbUser.region.name}",
                 "fields[NAME]": dbUser.name,
                 "fields[PHONE][0][VALUE]": dbUser.number,
                 "fields[ADDRESS]": dbUser.region.name
